@@ -16564,10 +16564,10 @@
 /* 4 */
 /***/ function(module, exports) {
 
-	function Record(artist, title, price){
-	  this.artist = artist;
-	  this.title  = title;
-	  this.price  = price;
+	function Record(params){
+	  this.artist = params.artist;
+	  this.title  = params.title;
+	  this.price  = params.price;
 	}
 	
 	Record.prototype = {
@@ -16586,6 +16586,7 @@
 	}
 	
 	module.exports = Record;
+
 
 /***/ },
 /* 5 */
@@ -16669,15 +16670,21 @@
 	
 	    var invList = document.getElementById("inventory");
 	
-	    var recList = this.store.listInventory();
-	
-	    console.log(recList);
-	
-	    for(var record of recList){
+	    for(var record of this.store.records){
 	      var invListItem = document.createElement("li");
+	      invListItem.innerText = record.artist + " - " + record.title + ", £" + record.price;
 	      invList.appendChild(invListItem);
-	      invListItem.innerText = "Artist: " + this.record.artist;
 	    }
+	
+	    // var recList = this.store.listInventory();
+	
+	    // console.log(recList);
+	
+	    // for(var record of recList){
+	    //   var invListItem = document.createElement("li");
+	    //   invList.appendChild(invListItem);
+	    //   invListItem.innerText = "Artist: " + this.record.artist;
+	    // }
 	
 	    var displayStore = document.getElementById("record-store");
 	    displayStore.innerText = "Store: " + this.store.getName() + " of " + this.store.getCity();

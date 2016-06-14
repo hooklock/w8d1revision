@@ -1,7 +1,7 @@
-function Record(artist, title, price){
-  this.artist = artist;
-  this.title  = title;
-  this.price  = price;
+function Record(params){
+  this.artist = params.artist;
+  this.title  = params.title;
+  this.price  = params.price;
 }
 
 Record.prototype = {

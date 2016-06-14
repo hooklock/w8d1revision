@@ -1,0 +1,18 @@
+module.exports = [
+  { "artist": "David Bowie",
+    "title": "Earthling",
+    "price": 9.99
+  },
+  { "artist": "Django Django",
+    "title": "Born Under Saturn",
+    "price": 9.99
+  },
+  { "artist": "Evanescence",
+    "title": "Fallen",
+    "price": 9.99
+  },
+  { "artist": "Fastball",
+    "title": "All the Pain Money Can Buy",
+    "price": 9.99
+  },
+]

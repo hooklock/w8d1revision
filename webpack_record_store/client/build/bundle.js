@@ -44,12 +44,27 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Store = __webpack_require__(1);
+	var RecordStore = __webpack_require__(1);
+	var sampleRecords = __webpack_require__(6);
 	var Record = __webpack_require__(4);
 	var Collector = __webpack_require__(5);
+	var StoreView = __webpack_require__(7);
 	
 	window.onload = function(){
-	  console.log("App created from webpack");
+	  console.log("Sample Records", sampleRecords);
+	
+	
+	var store = new RecordStore("Mack's", "Glasgow");
+	
+	for(recordData of sampleRecords){
+	  store.addRecord(new Record(recordData));
+	}
+	
+	var store1View = new StoreView(store);
+	store1View.render();
+	
+	console.log("Store created ", store);
+	
 	};
 
 
@@ -16615,6 +16630,61 @@
 	}
 	
 	module.exports = RecordCollector;
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	module.exports = [
+	  { "artist": "David Bowie",
+	    "title": "Earthling",
+	    "price": 9.99
+	  },
+	  { "artist": "Django Django",
+	    "title": "Born Under Saturn",
+	    "price": 9.99
+	  },
+	  { "artist": "Evanescence",
+	    "title": "Fallen",
+	    "price": 9.99
+	  },
+	  { "artist": "Fastball",
+	    "title": "All the Pain Money Can Buy",
+	    "price": 9.99
+	  },
+	]
+
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	var StoreView = function(store){
+	  this.store = store;
+	};
+	
+	StoreView.prototype = {
+	  render: function(){
+	
+	    var invList = document.getElementById("inventory");
+	
+	    var recList = this.store.listInventory();
+	
+	    console.log(recList);
+	
+	    for(var record of recList){
+	      var invListItem = document.createElement("li");
+	      invList.appendChild(invListItem);
+	      invListItem.innerText = "Artist: " + this.record.artist;
+	    }
+	
+	    var displayStore = document.getElementById("record-store");
+	    displayStore.innerText = "Store: " + this.store.getName() + " of " + this.store.getCity();
+	  }
+	};
+	
+	module.exports = StoreView;
 
 
 /***/ }
